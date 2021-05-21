@@ -21,28 +21,28 @@ import gradio as gr
 import transformers
 import sentencepiece
 from summarizer import Summarizer
-import sumy
-import nltk
-nltk.download('punkt')
+# import sumy
+# import nltk
+# nltk.download('punkt')
 
-from sumy.parsers.html import HtmlParser
-from sumy.parsers.plaintext import PlaintextParser
-from sumy.nlp.tokenizers import Tokenizer
-from sumy.summarizers.text_rank import TextRankSummarizer
-from sumy.summarizers.lex_rank import LexRankSummarizer
-from sumy.summarizers.luhn import LuhnSummarizer
-from sumy.summarizers.lsa import LsaSummarizer
-from sumy.summarizers.kl import KLSummarizer
-from sumy.summarizers.edmundson import EdmundsonSummarizer
-from sumy.summarizers.random import  RandomSummarizer
-from sumy.summarizers.reduction import  ReductionSummarizer
-from sumy.summarizers.sum_basic import  SumBasicSummarizer
-from sumy.nlp.stemmers import Stemmer
-from sumy.utils import get_stop_words
+# from sumy.parsers.html import HtmlParser
+# from sumy.parsers.plaintext import PlaintextParser
+# from sumy.nlp.tokenizers import Tokenizer
+# from sumy.summarizers.text_rank import TextRankSummarizer
+# from sumy.summarizers.lex_rank import LexRankSummarizer
+# from sumy.summarizers.luhn import LuhnSummarizer
+# from sumy.summarizers.lsa import LsaSummarizer
+# from sumy.summarizers.kl import KLSummarizer
+# from sumy.summarizers.edmundson import EdmundsonSummarizer
+# from sumy.summarizers.random import  RandomSummarizer
+# from sumy.summarizers.reduction import  ReductionSummarizer
+# from sumy.summarizers.sum_basic import  SumBasicSummarizer
+# from sumy.nlp.stemmers import Stemmer
+# from sumy.utils import get_stop_words
 
-LANGUAGE= 'english'
-SENTENCES_COUNT =2
-stemmer = Stemmer(LANGUAGE)
+# LANGUAGE= 'english'
+# SENTENCES_COUNT =2
+# stemmer = Stemmer(LANGUAGE)
 
 
 
@@ -63,9 +63,9 @@ tokenizer_t5_small = AutoTokenizer.from_pretrained("t5-small")
 model_t5_base_finetuned_summarize_news = AutoModelWithLMHead.from_pretrained("mrm8488/t5-base-finetuned-summarize-news")
 tokenizer_t5_base_finetuned_summarize_news = AutoTokenizer.from_pretrained("mrm8488/t5-base-finetuned-summarize-news")
 
-from gensim.summarization import summarize,summarize_corpus
-from gensim.summarization.textcleaner import split_sentences
-from gensim import corpora
+# from gensim.summarization import summarize,summarize_corpus
+# from gensim.summarization.textcleaner import split_sentences
+# from gensim import corpora
 
 # !pip install -q keybert
 
@@ -100,45 +100,45 @@ def SummariseText(inp,no_of_sentences,key_words_inp):
   generated_text16_finetuned_summarize_news =""; 
   extracted_keywords="";
   
-  generated_text1_Gensim_50pc = summarize(inp, ratio=0.5)  
-  generated_text2_Gensim_20pc = summarize(inp, ratio=0.2)
-  num_sentences_in_summary = no_of_sentences #getting 2 sentence
-  parser = PlaintextParser(inp, Tokenizer('english'))
-  summarizer_list=("TextRankSummarizer","LexRankSummarizer","LuhnSummarizer","LsaSummarizer","KLSummarizer","RandomSummarizer","ReductionSummarizer","SumBasicSummarizer") #list of summarizers
-  summarizers = [TextRankSummarizer(), LexRankSummarizer(), LuhnSummarizer(), LsaSummarizer(),KLSummarizer(),RandomSummarizer(),ReductionSummarizer(),SumBasicSummarizer()]
-  all_sentences= "";
-  for i,summarizer in enumerate(summarizers):
-    summary_text =""
+  # generated_text1_Gensim_50pc = summarize(inp, ratio=0.5)  
+  # generated_text2_Gensim_20pc = summarize(inp, ratio=0.2)
+  # num_sentences_in_summary = no_of_sentences #getting 2 sentence
+  # parser = PlaintextParser(inp, Tokenizer('english'))
+  # summarizer_list=("TextRankSummarizer","LexRankSummarizer","LuhnSummarizer","LsaSummarizer","KLSummarizer","RandomSummarizer","ReductionSummarizer","SumBasicSummarizer") #list of summarizers
+  # summarizers = [TextRankSummarizer(), LexRankSummarizer(), LuhnSummarizer(), LsaSummarizer(),KLSummarizer(),RandomSummarizer(),ReductionSummarizer(),SumBasicSummarizer()]
+  # all_sentences= "";
+  # for i,summarizer in enumerate(summarizers):
+  #   summary_text =""
     
-    for sentence in summarizer(parser.document, num_sentences_in_summary):
-         summary_text = summary_text + str(sentence)
-    if (summarizer_list[i]=="TextRankSummarizer"):
-      generated_text3_TextRankSummarizer = summary_text
-    elif (summarizer_list[i]=="LexRankSummarizer"):
-      generated_text4_LexRankSummarizer = summary_text
-    elif (summarizer_list[i]=="LuhnSummarizer"):
-      generated_text5_LuhnSummarizer = summary_text
-    elif (summarizer_list[i]=="LsaSummarizer"):
-      generated_text6_LsaSummarizer = summary_text
-    elif (summarizer_list[i]=="KLSummarizer"):
-      generated_text7_KLSummarizer = summary_text
-    elif (summarizer_list[i]=="RandomSummarizer"):
-      generated_text8_RandomSummarizer = summary_text
-    elif (summarizer_list[i]=="ReductionSummarizer"):
-      generated_text9_ReductionSummarizer = summary_text
-    elif (summarizer_list[i]=="SumBasicSummarizer"):
-      generated_text10_SumBasicSummarizer= summary_text
-    else  :
-      generated_text1999="";
+  #   for sentence in summarizer(parser.document, num_sentences_in_summary):
+  #        summary_text = summary_text + str(sentence)
+  #   if (summarizer_list[i]=="TextRankSummarizer"):
+  #     generated_text3_TextRankSummarizer = summary_text
+  #   elif (summarizer_list[i]=="LexRankSummarizer"):
+  #     generated_text4_LexRankSummarizer = summary_text
+  #   elif (summarizer_list[i]=="LuhnSummarizer"):
+  #     generated_text5_LuhnSummarizer = summary_text
+  #   elif (summarizer_list[i]=="LsaSummarizer"):
+  #     generated_text6_LsaSummarizer = summary_text
+  #   elif (summarizer_list[i]=="KLSummarizer"):
+  #     generated_text7_KLSummarizer = summary_text
+  #   elif (summarizer_list[i]=="RandomSummarizer"):
+  #     generated_text8_RandomSummarizer = summary_text
+  #   elif (summarizer_list[i]=="ReductionSummarizer"):
+  #     generated_text9_ReductionSummarizer = summary_text
+  #   elif (summarizer_list[i]=="SumBasicSummarizer"):
+  #     generated_text10_SumBasicSummarizer= summary_text
+  #   else  :
+  #     generated_text1999="";
   
-  EdSummarizer = EdmundsonSummarizer(stemmer)
-  EdSummarizer.bonus_words = key_words_inp ;
-  # ('amplification-free', 'fluorescence-based','Hybrid', 'Capture' ,'Fluorescence', 'Immunoassay')
-  EdSummarizer.stigma_words = ('example')
-  EdSummarizer.null_words = ('literature','however')
-  parser = PlaintextParser(inp, Tokenizer('english'))
-  for sentence in EdSummarizer(parser.document , SENTENCES_COUNT):
-      generated_text11_Edmundson += str(sentence)
+  # EdSummarizer = EdmundsonSummarizer(stemmer)
+  # EdSummarizer.bonus_words = key_words_inp ;
+  # # ('amplification-free', 'fluorescence-based','Hybrid', 'Capture' ,'Fluorescence', 'Immunoassay')
+  # EdSummarizer.stigma_words = ('example')
+  # EdSummarizer.null_words = ('literature','however')
+  # parser = PlaintextParser(inp, Tokenizer('english'))
+  # for sentence in EdSummarizer(parser.document , SENTENCES_COUNT):
+  #     generated_text11_Edmundson += str(sentence)
       
   generated_text12_bertmodel = bert_model(inp)
 
@@ -166,7 +166,8 @@ def SummariseText(inp,no_of_sentences,key_words_inp):
   b = model_t5_small.generate(a, max_length=150, min_length=50, length_penalty=2.0, num_beams=4, early_stopping=True)
   generated_text17_of_summaries1 = tokenizer_t5_small.decode(b[0])
 
-  return extracted_keywords,generated_text1_Gensim_50pc,generated_text2_Gensim_20pc,generated_text3_TextRankSummarizer,generated_text4_LexRankSummarizer,generated_text5_LuhnSummarizer,generated_text6_LsaSummarizer,generated_text7_KLSummarizer,generated_text8_RandomSummarizer,generated_text9_ReductionSummarizer,generated_text10_SumBasicSummarizer,generated_text11_Edmundson,generated_text12_bertmodel,generated_text13_transformer_pipeline,generated_text14_t5_base,generated_text15_t5_small,generated_text16_finetuned_summarize_news,generated_text17_of_summaries1
+  # return extracted_keywords,generated_text1_Gensim_50pc,generated_text2_Gensim_20pc,generated_text3_TextRankSummarizer,generated_text4_LexRankSummarizer,generated_text5_LuhnSummarizer,generated_text6_LsaSummarizer,generated_text7_KLSummarizer,generated_text8_RandomSummarizer,generated_text9_ReductionSummarizer,generated_text10_SumBasicSummarizer,generated_text11_Edmundson,generated_text12_bertmodel,generated_text13_transformer_pipeline,generated_text14_t5_base,generated_text15_t5_small,generated_text16_finetuned_summarize_news,generated_text17_of_summaries1
+  return   generated_text12_bertmodel,generated_text13_transformer_pipeline,generated_text14_t5_base,generated_text15_t5_small,generated_text16_finetuned_summarize_news,generated_text17_of_summaries1
 
 iface = gr.Interface(
   fn=SummariseText, 
@@ -174,18 +175,7 @@ iface = gr.Interface(
           gr.inputs.Textbox(label="No. of sentences for summary", placeholder="Enter a number between 2 to 4"),
           gr.inputs.Textbox(label="Input keywords(ex. 'COVID-19', 'Repurposing', 'Renin')",lines=3, placeholder="eg ('COVID-19', 'Repurposing', 'Renin')") ],
     
-  outputs=[gr.outputs.Textbox(label="Keywords exracted"),
-           gr.outputs.Textbox(label="Summary-1 (Gensim , ratio 0.5)"),
-           gr.outputs.Textbox(label="Summary-2 (Gensim , ratio 0.2)"),
-           gr.outputs.Textbox(label="Summary-3 (TextRank)"),
-           gr.outputs.Textbox(label="Summary-4 (LexRank) "),
-           gr.outputs.Textbox(label="Summary-5 (Luhn)"),
-           gr.outputs.Textbox(label="Summary-6 (Lsa)"),
-           gr.outputs.Textbox(label="Summary-7 (KL)"),
-           gr.outputs.Textbox(label="Summary-8 (Random)"),
-           gr.outputs.Textbox(label="Summary-9 (Reduction)"),
-           gr.outputs.Textbox(label="Summary-10 (Sumbasic)"),
-           gr.outputs.Textbox(label="Summary-11 (Edmundson)"),
+  outputs=[ 
            gr.outputs.Textbox(label="* Summary-12 (Bert) "),
            gr.outputs.Textbox(label="* Summary-13 (Transformer pipeline)"),
            gr.outputs.Textbox(label="* Summary-14 (Transformer t5-base)"),
