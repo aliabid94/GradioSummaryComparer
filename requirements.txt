@@ -1,8 +1,5 @@
 gradio
 protobuf 
-sumy
-nltk
-keybert
 gensim
 torch
 transformers
