@@ -1,4 +1,5 @@
 gradio
+protobuf 
 sumy
 nltk
 keybert
