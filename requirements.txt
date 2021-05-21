@@ -1,6 +1,4 @@
 gradio
-protobuf 
-gensim
 torch
 transformers
 sentencepiece
