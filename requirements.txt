@@ -1,5 +1,6 @@
 gradio
 sumy
+nltk
 torch
 transformers
 sentencepiece
