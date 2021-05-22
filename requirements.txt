@@ -1,2 +1,5 @@
 gradio
+transformers
+sentencepiece
+bert-extractive-summarizer 
  
