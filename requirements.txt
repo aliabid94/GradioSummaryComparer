@@ -3,4 +3,5 @@ torch
 transformers
 sentencepiece
 bert-extractive-summarizer 
+protobuf 
  
